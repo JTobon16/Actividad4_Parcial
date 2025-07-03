@@ -8,5 +8,7 @@ public interface HabitacionServicio {
     Habitacion buscarHabitacionPorId(int id);
     List<Habitacion> listarHabitacionesPorHotel(int hotelId);
     void eliminarHabitacion(int id);
-    void actualizarHabitacion(Habitacion habitacion);
+    void actualizar(Habitacion habitacion);
+
+    
 }
