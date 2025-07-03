@@ -11,13 +11,13 @@ import java.util.Optional;
 
 public interface HabitacionRepositorio {
 
-    void guardar(Habitacion habitacion);
-
+   void guardar(Habitacion habitacion);
+   
     Optional<Habitacion> buscarPorId(int id);
-
+    
     List<Habitacion> listarPorHotel(int hotelId);
-
-    List<Habitacion> listarDisponiblesPorTipo(int hotelId, String tipo);
-
-    void eliminar(int id);
+    
+    void actualizar(Habitacion habitacion);
+    
+void eliminar(int id);
 }

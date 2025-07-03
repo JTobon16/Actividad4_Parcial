@@ -22,4 +22,6 @@ public interface ReservaRepositorio {
     List<Reserva> listar();
 
     void eliminar(int id);
+    
+    void actualizar(Reserva reserva);
 }

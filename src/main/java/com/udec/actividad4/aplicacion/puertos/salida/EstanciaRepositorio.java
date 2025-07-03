@@ -20,9 +20,16 @@ public interface EstanciaRepositorio {
 
     Optional<Estancia> buscarPorId(int id);
 
-    List<Estancia> listarPorHotel(int hotelId);
+ 
+
+    void eliminar(int id);
+    
+       List<Estancia> listarTodas(); 
+   
+       
+       List<Estancia> listarPorHotel(int hotelId);
 
     List<Estancia> listarPorCliente(String clienteDni);
 
-    void eliminar(int id);
+    void actualizar(Estancia estancia); 
 }

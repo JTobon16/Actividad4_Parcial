@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.udec.actividad4.aplicacion.puertos.salida;
 
 import com.udec.actividad4.dominio.modelo.Factura;
@@ -15,9 +11,7 @@ public interface FacturaRepositorio {
 
     Optional<Factura> buscarPorId(int id);
 
-    List<Factura> listarPorCliente(String clienteDni);
-
-    List<Factura> listarTodas();
+    List<Factura> listarTodos();
 
     void eliminar(int id);
 }

@@ -19,6 +19,8 @@ public interface HotelRepositorio {
     List<Hotel> listarTodos();
 
     void eliminar(int id);
+    
+    void actualizar(Hotel hotel);
 
     List<Hotel> buscarPorNombreOCategoria(String nombre, int estrellas);
 }

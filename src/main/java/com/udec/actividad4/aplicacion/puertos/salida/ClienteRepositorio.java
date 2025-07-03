@@ -17,7 +17,9 @@ public interface ClienteRepositorio {
 
     List<Cliente> listarTodos();
 
-    void eliminar(String dni);
+    void eliminar(Cliente cliente);
+    
+    void actualizar (Cliente cliente);
 
-    List<Cliente> buscarPorNombre(String nombre);
+    
 }

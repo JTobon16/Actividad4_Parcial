@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.udec.actividad4.aplicacion.puertos.salida;
 
 import com.udec.actividad4.dominio.modelo.Actividad;
@@ -15,9 +11,9 @@ public interface ActividadRepositorio {
 
     Optional<Actividad> buscarPorId(int id);
 
-    List<Actividad> listarPorHotel(int hotelId);
+    List<Actividad> listarTodos();
 
-    List<Actividad> listarPorEmpleado(int empleadoId);
+    void actualizar(Actividad actividad);
 
     void eliminar(int id);
 }

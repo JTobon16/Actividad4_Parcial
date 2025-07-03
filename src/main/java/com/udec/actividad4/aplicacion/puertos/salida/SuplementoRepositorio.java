@@ -20,4 +20,6 @@ public interface SuplementoRepositorio {
     List<Suplemento> listarTodos();
 
     void eliminar(int id);
+    
+    void actualizar (Suplemento suplemento);
 }
