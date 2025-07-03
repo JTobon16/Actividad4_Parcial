@@ -10,7 +10,7 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Safari Hotel</name>
+  <name>Actividad4</name>
   <description>Proyecto Java + JDBC + MySQL usando arquitectura hexagonal</description>
 
   <properties>
