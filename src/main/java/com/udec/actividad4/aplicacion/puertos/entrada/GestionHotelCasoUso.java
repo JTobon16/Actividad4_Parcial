@@ -8,7 +8,9 @@ import java.util.List;
 public interface GestionHotelCasoUso {
     void registrarHotel(Hotel hotel);
     List<Hotel> listarHoteles();
-    Hotel buscarHotelPorId(int id); // corregido
+    Hotel buscarHotelPorId(int id); 
     void eliminarHotel(int id);
-    void actualizarHotel(Hotel hotel); // agregado
+    void actualizarHotel(Hotel hotel); 
+    List<String> obtenerContactosYDirectores(); // Consulta 2
+
 }

@@ -22,6 +22,7 @@ public class ConsolaApp {
 
             // aqui estamos generando la consulta 1
             controlador.mostrarHoteles();
+            controlador.mostrarContactosYDirectores(); // consulta 2
         } else {
             System.err.println("No se pudo establecer la conexión a la base de datos.");
         }

@@ -32,5 +32,10 @@ public class HotelControlador {
             }
         }
     }
+            public void mostrarContactosYDirectores() {
+            List<String> contactos = gestionHotelCasoUso.obtenerContactosYDirectores();
+                System.out.println("\n Contactos y Directores de los Hoteles:");
+                         contactos.forEach(System.out::println);
+}
 }
 

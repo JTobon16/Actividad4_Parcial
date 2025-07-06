@@ -42,4 +42,11 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     public void actualizarHotel(Hotel hotel) {
         hotelRepositorio.actualizar(hotel);
     }
+    
+    //Consulta 2
+    @Override
+    public List<String> obtenerContactosYDirectores() {
+    return hotelRepositorio.obtenerContactosYDirectores();
+}
+
 }

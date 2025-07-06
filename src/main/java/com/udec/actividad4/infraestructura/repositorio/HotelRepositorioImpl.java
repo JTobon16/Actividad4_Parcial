@@ -135,4 +135,29 @@ public class HotelRepositorioImpl implements HotelRepositorio {
         hotel.setNombreDirector(rs.getString("nombreDirector"));
         return hotel;
     }
+    
+    
+    // Consulta 2
+    @Override
+    public List<String> obtenerContactosYDirectores() {
+    String sql = "SELECT nombre, telefono, nombreDirector FROM hotel";
+    List<String> resultado = new ArrayList<>();
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String linea = String.format("Hotel: %s | Teléfono: %s | Director: %s",
+                    rs.getString("nombre"),
+                    rs.getString("telefono"),
+                    rs.getString("nombreDirector"));
+            resultado.add(linea);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener contactos y directores", e);
+    }
+
+    return resultado;
+}
 }

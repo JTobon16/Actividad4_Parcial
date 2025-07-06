@@ -8,6 +8,7 @@ package com.udec.actividad4.aplicacion.puertos.salida;
 import com.udec.actividad4.dominio.modelo.Hotel;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface HotelRepositorio {
@@ -23,4 +24,10 @@ public interface HotelRepositorio {
     void actualizar(Hotel hotel);
 
     List<Hotel> buscarPorNombreOCategoria(String nombre, int estrellas);
+    
+    List<String> obtenerContactosYDirectores(); // Consulta 2
+    
+    
+
+
 }
