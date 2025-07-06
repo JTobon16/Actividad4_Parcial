@@ -5,6 +5,7 @@
 package com.udec.actividad4.infraestructura.controlador;
 
 import com.udec.actividad4.aplicacion.puertos.entrada.GestionReservaCasoUso;
+import com.udec.actividad4.dominio.modelo.Reserva;
 
 import com.udec.actividad4.infraestructura.dtos.ReservaDetalleDTO;
 
@@ -36,4 +37,25 @@ public class ReservaControlador {
             }
         }
     }
+    
+    // consulta 8
+    public void mostrarHistorialReservasCliente(String dniCliente) {
+    List<Reserva> reservas = gestionReservaCasoUso.obtenerHistorialReservasCliente(dniCliente);
+
+    if (reservas.isEmpty()) {
+        System.out.println("El cliente no tiene reservas registradas.");
+    } else {
+        System.out.println("Historial de reservas para el cliente " + dniCliente + ":");
+        for (Reserva r : reservas) {
+            System.out.println("ID Reserva: " + r.getId());
+            System.out.println("Hotel ID: " + r.getHotelId());
+            System.out.println("Inicio: " + r.getFechaInicio());
+            System.out.println("Fin: " + r.getFechaFin());
+            System.out.println("Senal Pagada: " + r.getSenalPagada());
+            System.out.println("Confirmada: " + r.isConfirmada());
+            System.out.println("----------");
+        }
+    }
+}
+
 }

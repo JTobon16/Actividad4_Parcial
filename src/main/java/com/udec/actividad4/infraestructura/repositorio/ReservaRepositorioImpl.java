@@ -161,6 +161,36 @@ public class ReservaRepositorioImpl implements ReservaRepositorio {
     }
     return resultados;
 }
+    
+    
+  // consulta 8
+    @Override
+    public List<Reserva> obtenerHistorialReservasCliente(String clienteDni) {
+        List<Reserva> reservas = new ArrayList<>();
+        String sql = "SELECT * FROM reserva WHERE clienteDni = ? ORDER BY fechaInicio DESC";
 
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setString(1, clienteDni);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Reserva reserva = new Reserva(
+                        rs.getInt("id"),
+                        rs.getString("clienteDni"),
+                        rs.getInt("hotelId"),
+                        rs.getDate("fechaInicio").toLocalDate(),
+                        rs.getDate("fechaFin").toLocalDate(),
+                        rs.getDouble("senalPagada"),
+                        rs.getBoolean("confirmada"),
+                        null // habitacionesReservadas se puede cargar aparte si se requiere
+                );
+                reservas.add(reserva);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener historial de reservas del cliente", e);
+        }
+
+        return reservas;
+    }
 
 }

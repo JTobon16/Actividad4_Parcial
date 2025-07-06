@@ -27,5 +27,8 @@ public interface ReservaRepositorio {
     void actualizar(Reserva reserva);
 
     public List<ReservaDetalleDTO> obtenerReservasActivasConDetalle();// consulta 7
+    
+    List<Reserva> obtenerHistorialReservasCliente(String dniCliente);// consulta 8
+
 
 }
