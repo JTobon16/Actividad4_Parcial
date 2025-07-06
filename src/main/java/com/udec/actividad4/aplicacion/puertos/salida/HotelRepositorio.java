@@ -23,13 +23,16 @@ public interface HotelRepositorio {
     
     void actualizar(Hotel hotel);
 
-    List<Hotel> buscarPorNombreOCategoria(String nombre, int estrellas);
+    List<Hotel> buscarPorNombreOCategoria(String nombre, int estrellas); // consulta 1
     
     List<String> obtenerContactosYDirectores(); // Consulta 2
     
     Map<String, Map<String, Integer>> contarEmpleadosPorTipoPorHotel(); //Consulta 3
     
     List<String> obtenerResumenEmpleados();//Consulta 4
+    
+    Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId); // consulta 5
+
 
     
 

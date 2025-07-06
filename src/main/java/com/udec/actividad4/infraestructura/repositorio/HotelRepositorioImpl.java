@@ -105,7 +105,7 @@ public class HotelRepositorioImpl implements HotelRepositorio {
             throw new RuntimeException("Error al actualizar el hotel", e);
         }
     }
-
+    // consulta 1
     @Override
     public List<Hotel> buscarPorNombreOCategoria(String nombre, int estrellas) {
         List<Hotel> hoteles = new ArrayList<>();
@@ -192,7 +192,7 @@ public class HotelRepositorioImpl implements HotelRepositorio {
     return resultado;
 }
 
-    //Consulta 3
+    //Consulta 4
     @Override
     public List<String> obtenerResumenEmpleados() {
     List<String> resumen = new ArrayList<>();
@@ -213,6 +213,39 @@ public class HotelRepositorioImpl implements HotelRepositorio {
     }
 
     return resumen;
+}
+    //consulta 5
+    
+    @Override
+
+    public Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId) {
+    Map<String, Integer> resultado = new HashMap<>();
+
+    String sql = "SELECT h.tipo, COUNT(*) AS cantidad " +
+                 "FROM habitacion h " +
+                 "WHERE h.hotelId = ? " +
+                 "AND NOT EXISTS ( " +
+                 "    SELECT 1 FROM reserva r " +
+                 "    WHERE r.Id = h.id " +
+                 "    AND r.hotelId = h.hotelId " +
+                 "    AND CURDATE() BETWEEN r.fechaInicio AND r.fechaFin " +
+                 ") " +
+                 "GROUP BY h.tipo";
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, hotelId);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            String tipo = rs.getString("tipo");
+            int cantidad = rs.getInt("cantidad");
+            resultado.put(tipo, cantidad);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al contar habitaciones disponibles por tipo", e);
+    }
+
+    return resultado;
 }
 
     

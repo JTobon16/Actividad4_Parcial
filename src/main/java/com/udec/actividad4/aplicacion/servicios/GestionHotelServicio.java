@@ -60,5 +60,9 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     public List<String> obtenerResumenEmpleados() {
     return hotelRepositorio.obtenerResumenEmpleados();
 }
+    //consulta 5
+    public Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId) {
+    return hotelRepositorio.contarHabitacionesDisponiblesPorTipo(hotelId);
+}
 
 }

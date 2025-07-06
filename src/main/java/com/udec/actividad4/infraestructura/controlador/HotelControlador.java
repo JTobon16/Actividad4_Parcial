@@ -18,7 +18,7 @@ public class HotelControlador {
         this.gestionHotelCasoUso = gestionHotelCasoUso;
     }
 
-    // aqui hicimos el metodo que nos mostrara los hoteles 
+    // aqui hicimos el metodo que nos mostrara los hoteles consulta 1
     public void mostrarHoteles() {
         List<Hotel> hoteles = gestionHotelCasoUso.listarHoteles();
         if (hoteles.isEmpty()) {
@@ -58,6 +58,19 @@ public class HotelControlador {
 
             System.out.println("\nResumen de empleados:");
              resumen.forEach(System.out::println);
+}
+  
+       //consulta 5         
+           public void mostrarHabitacionesDisponiblesPorTipo(int hotelId) {
+        Map<String, Integer> disponibles = gestionHotelCasoUso.contarHabitacionesDisponiblesPorTipo(hotelId);
+
+        if (disponibles.isEmpty()) {
+        System.out.println("No hay habitaciones disponibles para el hotel con ID: " + hotelId);
+            } else {
+        System.out.println("Habitaciones disponibles por tipo para el hotel ID " + hotelId + ":");
+        disponibles.forEach((tipo, cantidad) -> 
+            System.out.println("Tipo: " + tipo + " - Disponibles: " + cantidad));
+    }
 }
 
 }
