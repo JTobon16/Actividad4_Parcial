@@ -6,6 +6,7 @@ import com.udec.actividad4.infraestructura.controlador.HotelControlador;
 import com.udec.actividad4.infraestructura.repositorio.HotelRepositorioImpl;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 
 public class ConsolaApp {
 
@@ -25,7 +26,9 @@ public class ConsolaApp {
             controlador.mostrarContactosYDirectores(); // consulta 2
             controlador.mostrarCantidadEmpleadosPorTipoYHotel(); // consulta 3
             controlador.mostrarResumenEmpleados();// consulta 4
-            controlador.mostrarHabitacionesDisponiblesPorTipo(1); // consulta 5
+            controlador.mostrarHabitacionesDisponiblesPorTipo(1); // consulta 5  
+            controlador.mostrarOcupacionPorPeriodo(1, LocalDate.of(2025, 7, 1), LocalDate.of(2025, 7, 10)); // consulta 6
+
 
         } else {
             System.err.println("No se pudo establecer la conexión a la base de datos.");

@@ -1,9 +1,12 @@
 package com.udec.actividad4.infraestructura.repositorio;
 
 import com.udec.actividad4.aplicacion.puertos.salida.HotelRepositorio;
+import com.udec.actividad4.dominio.enums.TipoHabitacion;
+import com.udec.actividad4.dominio.modelo.Habitacion;
 import com.udec.actividad4.dominio.modelo.Hotel;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -248,6 +251,49 @@ public class HotelRepositorioImpl implements HotelRepositorio {
     return resultado;
 }
 
-    
+        //consulta 6
+    @Override
+    public List<Habitacion> obtenerHabitacionesOcupadasEnPeriodo(int hotelId, LocalDate inicio, LocalDate fin) {
+    List<Habitacion> ocupadas = new ArrayList<>();
+
+    String sql = "SELECT DISTINCT h.id, h.tipo, h.precioBasePorNoche, h.tieneVistaMar, h.tieneJacuzzi, h.tieneBalcon " +
+                 "FROM habitacion h " +
+                 "JOIN reserva r ON h.id = r.Id AND h.hotelId = r.hotelId " +
+                 "WHERE h.hotelId = ? " +
+                 "AND ( " +
+                 "      (r.fechaInicio <= ? AND r.fechaFin >= ?) OR " +
+                 "      (r.fechaInicio BETWEEN ? AND ?) OR " +
+                 "      (r.fechaFin BETWEEN ? AND ?) " +
+                 ")";
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, hotelId);
+        stmt.setDate(2, Date.valueOf(fin));
+        stmt.setDate(3, Date.valueOf(inicio));
+        stmt.setDate(4, Date.valueOf(inicio));
+        stmt.setDate(5, Date.valueOf(fin));
+        stmt.setDate(6, Date.valueOf(inicio));
+        stmt.setDate(7, Date.valueOf(fin));
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Habitacion h = new Habitacion();
+            h.setId(rs.getInt("id"));
+            h.setHotelId(hotelId);
+            h.setTipo(TipoHabitacion.valueOf(rs.getString("tipo")));
+            h.setPrecioBasePorNoche(rs.getDouble("precioBasePorNoche"));
+            h.setTieneVistaMar(rs.getBoolean("tieneVistaMar"));
+            h.setTieneJacuzzi(rs.getBoolean("tieneJacuzzi"));
+            h.setTieneBalcón(rs.getBoolean("tieneBalcon"));
+            ocupadas.add(h);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al consultar habitaciones ocupadas", e);
+    }
+
+    return ocupadas;
+}
+
     
 }

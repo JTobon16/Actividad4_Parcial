@@ -4,7 +4,9 @@ import com.udec.actividad4.aplicacion.puertos.entrada.GestionHotelCasoUso;
 
 import com.udec.actividad4.aplicacion.puertos.salida.HotelRepositorio;
 import com.udec.actividad4.dominio.excepciones.EntidadNoEncontradaException;
+import com.udec.actividad4.dominio.modelo.Habitacion;
 import com.udec.actividad4.dominio.modelo.Hotel;
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Map;
@@ -63,6 +65,10 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     //consulta 5
     public Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId) {
     return hotelRepositorio.contarHabitacionesDisponiblesPorTipo(hotelId);
+}
+    //consulta 6
+    public List<Habitacion> obtenerHabitacionesOcupadasEnPeriodo(int hotelId, LocalDate inicio, LocalDate fin) {
+    return hotelRepositorio.obtenerHabitacionesOcupadasEnPeriodo(hotelId, inicio, fin);
 }
 
 }

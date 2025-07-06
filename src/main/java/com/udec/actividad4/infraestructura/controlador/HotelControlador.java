@@ -5,7 +5,9 @@
 package com.udec.actividad4.infraestructura.controlador;
 
 import com.udec.actividad4.aplicacion.puertos.entrada.GestionHotelCasoUso;
+import com.udec.actividad4.dominio.modelo.Habitacion;
 import com.udec.actividad4.dominio.modelo.Hotel;
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Map;
@@ -70,6 +72,20 @@ public class HotelControlador {
         System.out.println("Habitaciones disponibles por tipo para el hotel ID " + hotelId + ":");
         disponibles.forEach((tipo, cantidad) -> 
             System.out.println("Tipo: " + tipo + " - Disponibles: " + cantidad));
+    }
+}
+
+           
+           public void mostrarOcupacionPorPeriodo(int hotelId, LocalDate inicio, LocalDate fin) {
+    List<Habitacion> ocupadas = gestionHotelCasoUso.obtenerHabitacionesOcupadasEnPeriodo(hotelId, inicio, fin);
+
+    System.out.println("Habitaciones ocupadas en el hotel ID " + hotelId + " del " + inicio + " al " + fin + ":");
+    if (ocupadas.isEmpty()) {
+        System.out.println("No hay habitaciones ocupadas en ese periodo.");
+    } else {
+        for (Habitacion h : ocupadas) {
+            System.out.println("Habitacion ID: " + h.getId() + ", Tipo: " + h.getTipo());
+        }
     }
 }
 

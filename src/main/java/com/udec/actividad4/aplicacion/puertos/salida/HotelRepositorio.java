@@ -5,7 +5,9 @@
 package com.udec.actividad4.aplicacion.puertos.salida;
 
 
+import com.udec.actividad4.dominio.modelo.Habitacion;
 import com.udec.actividad4.dominio.modelo.Hotel;
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Map;
@@ -32,6 +34,9 @@ public interface HotelRepositorio {
     List<String> obtenerResumenEmpleados();//Consulta 4
     
     Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId); // consulta 5
+    
+    List<Habitacion> obtenerHabitacionesOcupadasEnPeriodo(int hotelId, LocalDate inicio, LocalDate fin);  // consulta 6
+
 
 
     
