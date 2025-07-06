@@ -9,6 +9,7 @@ package com.udec.actividad4.aplicacion.puertos.salida;
  * @author altoc
  */
 import com.udec.actividad4.dominio.modelo.Reserva;
+import com.udec.actividad4.infraestructura.dtos.ReservaDetalleDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,4 +25,7 @@ public interface ReservaRepositorio {
     void eliminar(int id);
     
     void actualizar(Reserva reserva);
+
+    public List<ReservaDetalleDTO> obtenerReservasActivasConDetalle();// consulta 7
+
 }

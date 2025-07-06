@@ -3,6 +3,7 @@ package com.udec.actividad4.infraestructura.repositorio;
 import com.udec.actividad4.aplicacion.puertos.salida.ReservaRepositorio;
 import com.udec.actividad4.dominio.modelo.DetalleReservaHabitacion;
 import com.udec.actividad4.dominio.modelo.Reserva;
+import com.udec.actividad4.infraestructura.dtos.ReservaDetalleDTO;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -131,4 +132,35 @@ public class ReservaRepositorioImpl implements ReservaRepositorio {
             throw new RuntimeException("Error al actualizar la reserva", e);
         }
     }
+    
+    // consulta 7
+    public List<ReservaDetalleDTO> obtenerReservasActivasConDetalle() {
+    List<ReservaDetalleDTO> resultados = new ArrayList<>();
+    String sql = """
+        SELECT c.nombreCompleto, r.id, r.fechaInicio, r.fechaFin, e.habitaciones_ocupadas
+        FROM reserva r
+        JOIN cliente c ON r.clienteDni = c.dni
+        JOIN estancia e ON r.id = e.reserva_id
+        WHERE r.confirmada = TRUE AND e.finalizada = 0
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+            ReservaDetalleDTO dto = new ReservaDetalleDTO(
+                rs.getString("nombreCompleto"),
+                rs.getInt("id"),
+                rs.getString("fechaInicio"),
+                rs.getString("fechaFin"),
+                rs.getString("habitaciones_ocupadas")
+            );
+            resultados.add(dto);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al consultar reservas activas", e);
+    }
+    return resultados;
+}
+
+
 }

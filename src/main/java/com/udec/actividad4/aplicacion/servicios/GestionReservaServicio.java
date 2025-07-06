@@ -1,18 +1,20 @@
 package com.udec.actividad4.aplicacion.servicios;
 
+import com.udec.actividad4.aplicacion.puertos.entrada.GestionReservaCasoUso;
 import com.udec.actividad4.aplicacion.puertos.entrada.ReservaServicio;
 import com.udec.actividad4.aplicacion.puertos.salida.ReservaRepositorio;
 import com.udec.actividad4.dominio.excepciones.EntidadNoEncontradaException;
 import com.udec.actividad4.dominio.modelo.Reserva;
+import com.udec.actividad4.infraestructura.dtos.ReservaDetalleDTO;
 
 import java.util.List;
 
-public class GestionReservaServicio implements ReservaServicio {
+public class GestionReservaServicio implements GestionReservaCasoUso{
 
     private final ReservaRepositorio reservaRepositorio;
 
     public GestionReservaServicio(ReservaRepositorio reservaRepositorio) {
-        this.reservaRepositorio = reservaRepositorio;
+            this.reservaRepositorio = reservaRepositorio;
     }
 
     @Override
@@ -21,7 +23,7 @@ public class GestionReservaServicio implements ReservaServicio {
     }
 
     @Override
-    public Reserva buscarReservaPorId(int id) {
+    public Reserva obtenerReservaPorId(int id) {
         return reservaRepositorio.buscarPorId(id)
                 .orElseThrow(() -> new EntidadNoEncontradaException("Reserva no encontrada con ID: " + id));
     }
@@ -42,4 +44,10 @@ public class GestionReservaServicio implements ReservaServicio {
     public void actualizarReserva(Reserva reserva) {
         reservaRepositorio.actualizar(reserva);
     }
+    
+    // consulta 7
+    public  List<ReservaDetalleDTO> obtenerReservasActivasConDetalle() {
+    return reservaRepositorio.obtenerReservasActivasConDetalle();
+}
+
 }

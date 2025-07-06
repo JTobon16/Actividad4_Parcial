@@ -3,6 +3,7 @@
 package com.udec.actividad4.aplicacion.puertos.entrada;
 
 import com.udec.actividad4.dominio.modelo.Reserva;
+import com.udec.actividad4.infraestructura.dtos.ReservaDetalleDTO;
 
 import java.util.List;
 
@@ -15,4 +16,11 @@ public interface GestionReservaCasoUso {
     List<Reserva> listarReservas();
 
     void cancelarReserva(int id);
+    
+    void actualizarReserva(Reserva reserva);
+    
+    public List<ReservaDetalleDTO> obtenerReservasActivasConDetalle();// consulta 7
+    
+    
+
 }
