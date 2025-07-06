@@ -1,13 +1,14 @@
 package com.udec.actividad4.aplicacion.servicios;
 
-import com.udec.actividad4.aplicacion.puertos.entrada.HotelServicio;
+import com.udec.actividad4.aplicacion.puertos.entrada.GestionHotelCasoUso;
+
 import com.udec.actividad4.aplicacion.puertos.salida.HotelRepositorio;
 import com.udec.actividad4.dominio.excepciones.EntidadNoEncontradaException;
 import com.udec.actividad4.dominio.modelo.Hotel;
 
 import java.util.List;
 
-public class GestionHotelServicio implements HotelServicio {
+public class GestionHotelServicio implements GestionHotelCasoUso {
 
     private final HotelRepositorio hotelRepositorio;
 

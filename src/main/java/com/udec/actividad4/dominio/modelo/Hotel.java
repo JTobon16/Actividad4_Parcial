@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Hotel {
 
-    private int id; // Código numérico único
-    private String nombre; // Ej: “Safari’S Costa del Sol”
-    private int categoriaEstrellas; // 1 a 5 estrellas
+    private int id; 
+    private String nombre;
+    private int categoriaEstrellas; 
     private String direccion;
     private String telefono;
     private String nombreDirector;

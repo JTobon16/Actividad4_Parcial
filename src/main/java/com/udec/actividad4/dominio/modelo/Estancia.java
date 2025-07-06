@@ -11,7 +11,8 @@ public class Estancia {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private List<Integer> habitacionesOcupadas; // IDs de habitaciones efectivamente usadas
-
+    private boolean finalizada; 
+    
     public Estancia() {
     }
 
@@ -23,7 +24,14 @@ public class Estancia {
         this.habitacionesOcupadas = habitacionesOcupadas;
     }
 
+    public boolean isFinalizada() {
+        return finalizada;
+    }
+
     // Getters y Setters
+    public void setFinalizada(boolean finalizada) {
+        this.finalizada = finalizada;
+    }
 
     public int getId() {
         return id;
