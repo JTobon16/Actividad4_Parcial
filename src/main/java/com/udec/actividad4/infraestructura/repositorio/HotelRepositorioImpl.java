@@ -192,4 +192,29 @@ public class HotelRepositorioImpl implements HotelRepositorio {
     return resultado;
 }
 
+    //Consulta 3
+    @Override
+    public List<String> obtenerResumenEmpleados() {
+    List<String> resumen = new ArrayList<>();
+    String sql = "SELECT nombreCompleto, nivelEducativo, tipo FROM empleado";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombreCompleto");
+                String titulo = rs.getString("nivelEducativo");
+                String tipo = rs.getString("tipo"); // Enum como String
+                resumen.add("Nombre: " + nombre + " | Título: " + titulo + " | Cargo: " + tipo);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener resumen de empleados", e);
+    }
+
+    return resumen;
+}
+
+    
+    
 }

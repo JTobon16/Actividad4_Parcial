@@ -49,9 +49,16 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     public List<String> obtenerContactosYDirectores() {
     return hotelRepositorio.obtenerContactosYDirectores();
 }
+    //Consulta 3
     @Override
     public Map<String, Map<String, Integer>> contarEmpleadosPorTipoPorHotel() {
     return hotelRepositorio.contarEmpleadosPorTipoPorHotel();
+    
+}
+    //Consulta 4
+    @Override
+    public List<String> obtenerResumenEmpleados() {
+    return hotelRepositorio.obtenerResumenEmpleados();
 }
 
 }

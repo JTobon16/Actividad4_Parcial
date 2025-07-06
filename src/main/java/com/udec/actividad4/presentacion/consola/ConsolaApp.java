@@ -24,6 +24,8 @@ public class ConsolaApp {
             controlador.mostrarHoteles();
             controlador.mostrarContactosYDirectores(); // consulta 2
             controlador.mostrarCantidadEmpleadosPorTipoYHotel(); // consulta 3
+            controlador.mostrarResumenEmpleados();// consulta 4
+
         } else {
             System.err.println("No se pudo establecer la conexión a la base de datos.");
         }

@@ -52,6 +52,13 @@ public class HotelControlador {
                  System.out.println("-----------");
                    }
 }
+      //Consulta 4     
+            public void mostrarResumenEmpleados() {
+                List<String> resumen = gestionHotelCasoUso.obtenerResumenEmpleados();
+
+            System.out.println("\nResumen de empleados:");
+             resumen.forEach(System.out::println);
+}
 
 }
 

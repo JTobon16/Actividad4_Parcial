@@ -28,6 +28,8 @@ public interface HotelRepositorio {
     List<String> obtenerContactosYDirectores(); // Consulta 2
     
     Map<String, Map<String, Integer>> contarEmpleadosPorTipoPorHotel(); //Consulta 3
+    
+    List<String> obtenerResumenEmpleados();//Consulta 4
 
     
 
