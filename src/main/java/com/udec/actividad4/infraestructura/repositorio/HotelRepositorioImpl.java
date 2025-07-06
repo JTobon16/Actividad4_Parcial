@@ -5,7 +5,9 @@ import com.udec.actividad4.dominio.modelo.Hotel;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class HotelRepositorioImpl implements HotelRepositorio {
@@ -160,4 +162,34 @@ public class HotelRepositorioImpl implements HotelRepositorio {
 
     return resultado;
 }
+    
+    //Consulta 3
+    @Override
+    public Map<String, Map<String, Integer>> contarEmpleadosPorTipoPorHotel() {
+            Map<String, Map<String, Integer>> resultado = new HashMap<>();
+
+    String sql = "SELECT h.nombre AS hotel, e.tipo AS tipo, COUNT(*) AS total " +
+                 "FROM empleado e " +
+                 "JOIN hotel h ON e.hotelId = h.id " +
+                 "GROUP BY h.nombre, e.tipo";
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String nombreHotel = rs.getString("hotel");
+            String tipo = rs.getString("tipo");
+            int total = rs.getInt("total");
+
+            resultado.putIfAbsent(nombreHotel, new HashMap<>());
+            resultado.get(nombreHotel).put(tipo, total);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al contar empleados por tipo y hotel", e);
+    }
+
+    return resultado;
+}
+
 }

@@ -20,9 +20,10 @@ public class ConsolaApp {
             GestionHotelServicio hotelServicio = new GestionHotelServicio(hotelRepo);
             HotelControlador controlador = new HotelControlador(hotelServicio);
 
-            // aqui estamos generando la consulta 1
+            // aqui estamos generando las consultas
             controlador.mostrarHoteles();
             controlador.mostrarContactosYDirectores(); // consulta 2
+            controlador.mostrarCantidadEmpleadosPorTipoYHotel(); // consulta 3
         } else {
             System.err.println("No se pudo establecer la conexión a la base de datos.");
         }

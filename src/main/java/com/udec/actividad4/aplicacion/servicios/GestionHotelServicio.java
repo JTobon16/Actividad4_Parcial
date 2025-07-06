@@ -7,6 +7,7 @@ import com.udec.actividad4.dominio.excepciones.EntidadNoEncontradaException;
 import com.udec.actividad4.dominio.modelo.Hotel;
 
 import java.util.List;
+import java.util.Map;
 
 public class GestionHotelServicio implements GestionHotelCasoUso {
 
@@ -47,6 +48,10 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     @Override
     public List<String> obtenerContactosYDirectores() {
     return hotelRepositorio.obtenerContactosYDirectores();
+}
+    @Override
+    public Map<String, Map<String, Integer>> contarEmpleadosPorTipoPorHotel() {
+    return hotelRepositorio.contarEmpleadosPorTipoPorHotel();
 }
 
 }
