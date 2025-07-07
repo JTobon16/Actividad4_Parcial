@@ -74,6 +74,10 @@ public class ConsolaApp {
             
             actividadControlador.mostrarActividadesPorHotel(1); // Consulta 11
             actividadControlador.mostrarActividadesContratadasPorCliente("CC1001001"); // Consulta 12
+            actividadControlador.mostrarHistorialActividadesPagasPorHotel(1); // Consulta 13
+            actividadControlador.mostrarIngresosPorActividadesPagas(); // Consulta 14
+
+
 
 
 
