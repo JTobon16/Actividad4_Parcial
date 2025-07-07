@@ -1,12 +1,17 @@
 package com.udec.actividad4.presentacion.consola;
 
+import com.udec.actividad4.aplicacion.puertos.entrada.GestionSuplementoCasoUso;
+import com.udec.actividad4.aplicacion.puertos.salida.SuplementoRepositorio;
 import com.udec.actividad4.aplicacion.servicios.GestionHotelServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionReservaServicio;
+import com.udec.actividad4.aplicacion.servicios.GestionSuplementoServicio;
 import com.udec.actividad4.infraestructura.config.ConexionBD;
 import com.udec.actividad4.infraestructura.controlador.HotelControlador;
 import com.udec.actividad4.infraestructura.controlador.ReservaControlador;
+import com.udec.actividad4.infraestructura.controlador.SuplementoControlador;
 import com.udec.actividad4.infraestructura.repositorio.HotelRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.ReservaRepositorioImpl;
+import com.udec.actividad4.infraestructura.repositorio.SuplementoRepositorioImpl;
 
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -41,6 +46,12 @@ public class ConsolaApp {
             reservaControlador.mostrarReservasActivasConHabitaciones();//consulta 7
             reservaControlador.mostrarHistorialReservasCliente("CC1001001"); // consulta 8
 
+            SuplementoRepositorio suplementoRepositorio = new SuplementoRepositorioImpl(conexion);
+            GestionSuplementoCasoUso gestionSuplemento = new GestionSuplementoServicio(suplementoRepositorio);
+            SuplementoControlador suplementoControlador = new SuplementoControlador(gestionSuplemento);
+
+            // Ejecutar la consulta 9
+            suplementoControlador.mostrarSuplementosTemporada(LocalDate.of(2025, 7, 1));
 
 
         } else {

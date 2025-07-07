@@ -154,4 +154,36 @@ public class SuplementoRepositorioImpl implements SuplementoRepositorio {
             throw new RuntimeException("Error al actualizar el suplemento", e);
         }
     }
+    
+    
+   @Override
+    public List<Suplemento> obtenerSuplementosTemporadaPorFecha(LocalDate fechaConsulta) {
+    List<Suplemento> suplementos = new ArrayList<>();
+    String sql = "SELECT * FROM suplemento WHERE tipo = 'TEMPORADA' AND ? BETWEEN fechaInicio AND fechaFin";
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setDate(1, Date.valueOf(fechaConsulta));
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Suplemento suplemento = new Suplemento(
+                rs.getInt("id"),
+                rs.getInt("hotelId"),
+                rs.getString("descripcion"),
+                TipoSuplemento.valueOf(rs.getString("tipo")),
+                rs.getDouble("valorPorNoche"),
+                rs.getDate("fechaInicio").toLocalDate(),
+                rs.getDate("fechaFin").toLocalDate()
+            );
+            suplementos.add(suplemento);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener suplementos por temporada", e);
+    }
+
+    return suplementos;
+}
+
+
+
 }

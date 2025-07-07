@@ -5,6 +5,7 @@
 package com.udec.actividad4.aplicacion.puertos.salida;
 
 import com.udec.actividad4.dominio.modelo.Suplemento;
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +23,7 @@ public interface SuplementoRepositorio {
     void eliminar(int id);
     
     void actualizar (Suplemento suplemento);
+    
+    List<Suplemento> obtenerSuplementosTemporadaPorFecha(LocalDate fechaConsulta);// consulta 9
+
 }
