@@ -73,6 +73,8 @@ public class ConsolaApp {
             ActividadControlador actividadControlador = new ActividadControlador(actividadServicio);
             
             actividadControlador.mostrarActividadesPorHotel(1); // Consulta 11
+            actividadControlador.mostrarActividadesContratadasPorCliente("CC1001001"); // Consulta 12
+
 
 
         } else {

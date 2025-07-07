@@ -20,4 +20,7 @@ public interface ActividadRepositorio {
     List<Actividad> obtenerActividadesPorEmpleado(int empleadoId);
 
      List<Actividad> obtenerActividadesPorHotel(int hotelId);
+     
+    List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni);
+
 }

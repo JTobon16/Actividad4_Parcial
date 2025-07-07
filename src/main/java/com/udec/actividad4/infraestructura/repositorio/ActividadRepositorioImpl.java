@@ -185,4 +185,31 @@ public List<Actividad> obtenerActividadesPorEmpleado(int empleadoId) {
     return actividades;
 }
 
+    //consulta 12
+    @Override
+    public List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni) {
+    List<Actividad> actividades = new ArrayList<>();
+    String sql = """
+        SELECT a.*
+        FROM actividad a
+        JOIN detalleActividad dac ON a.id = dac.actividadId
+        JOIN estancia e ON dac.estanciaId = e.id
+        JOIN reserva r ON e.id = r.id
+        WHERE r.clienteDni = ?
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setString(1, clienteDni);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            actividades.add(mapearActividad(rs));
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener actividades contratadas por cliente", e);
+    }
+
+    return actividades;
+}
+
 }

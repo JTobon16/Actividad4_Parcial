@@ -27,4 +27,19 @@ public class ActividadControlador {
                                (tipo.equals("DE PAGO") ? " | Precio: $" + act.getPrecioPorPersona() : ""));
         }
     }
+    
+    // consulta 12
+    public void mostrarActividadesContratadasPorCliente(String clienteDni) {
+    List<Actividad> actividades = gestionActividad.obtenerActividadesContratadasPorCliente(clienteDni);
+    System.out.println("\nActividades contratadas por el cliente " + clienteDni + ":");
+
+    for (Actividad act : actividades) {
+        System.out.println("Nombre: " + act.getNombre() +
+                           " | Dia: " + act.getDiaSemana() +
+                           " | Hora: " + act.getHora() +
+                           " | Tipo: " + act.getTipoActividad() +
+                           (act.getTipoActividad().name().equals("PAGA") ? " | Precio: $" + act.getPrecioPorPersona() : ""));
+    }
+}
+
 }

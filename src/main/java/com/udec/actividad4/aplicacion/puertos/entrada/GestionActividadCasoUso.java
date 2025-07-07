@@ -16,5 +16,6 @@ public interface GestionActividadCasoUso {
 
     void eliminarActividad(int id);
     
-    
+    List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni);
+
 }

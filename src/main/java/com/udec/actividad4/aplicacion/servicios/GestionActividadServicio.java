@@ -47,6 +47,10 @@ public class GestionActividadServicio implements GestionActividadCasoUso {
         actividadRepositorio.eliminar(id);
     }
     
-    
+    @Override
+    public List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni) {
+    return actividadRepositorio.obtenerActividadesContratadasPorCliente(clienteDni);
+}
+
    
 }
