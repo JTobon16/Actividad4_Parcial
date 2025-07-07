@@ -7,7 +7,9 @@ import com.udec.actividad4.dominio.modelo.Actividad;
 import java.sql.*;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ActividadRepositorioImpl implements ActividadRepositorio {
@@ -210,6 +212,61 @@ public List<Actividad> obtenerActividadesPorEmpleado(int empleadoId) {
     }
 
     return actividades;
+}
+
+    
+    
+    @Override
+public List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId) {
+    List<Actividad> actividades = new ArrayList<>();
+    String sql = """
+        SELECT a.*
+        FROM actividad a
+        JOIN detalleActividad dac ON a.id = dac.actividadId
+        WHERE a.tipoActividad = 'PAGA'
+          AND a.hotelId = ?
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, hotelId);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            actividades.add(mapearActividad(rs));
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener historial de actividades pagas por hotel", e);
+    }
+
+    return actividades;
+}
+
+
+    @Override
+    public Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel() {
+    Map<Integer, Double> ingresosPorHotel = new HashMap<>();
+
+    String sql = """
+        SELECT a.hotelId, SUM(dac.cantidadPersonas * a.precioPorPersona) AS ingresosTotales
+        FROM detalleActividad dac
+        JOIN actividad a ON dac.actividadId = a.id
+        WHERE a.tipoActividad = 'DE_PAGO'
+        GROUP BY a.hotelId
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            int hotelId = rs.getInt("hotelId");
+            double ingresos = rs.getDouble("ingresosTotales");
+            ingresosPorHotel.put(hotelId, ingresos);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener ingresos por actividades de pago por hotel", e);
+    }
+
+    return ingresosPorHotel;
 }
 
 }

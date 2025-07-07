@@ -3,6 +3,7 @@ package com.udec.actividad4.aplicacion.puertos.entrada;
 import com.udec.actividad4.dominio.modelo.Actividad;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GestionActividadCasoUso {
 
@@ -17,5 +18,11 @@ public interface GestionActividadCasoUso {
     void eliminarActividad(int id);
     
     List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni);
+    
+    List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId);
+    
+    Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel();
+
+
 
 }

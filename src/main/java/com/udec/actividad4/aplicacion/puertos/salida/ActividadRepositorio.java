@@ -3,6 +3,7 @@ package com.udec.actividad4.aplicacion.puertos.salida;
 import com.udec.actividad4.dominio.modelo.Actividad;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface ActividadRepositorio {
@@ -22,5 +23,10 @@ public interface ActividadRepositorio {
      List<Actividad> obtenerActividadesPorHotel(int hotelId);
      
     List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni);
+
+    List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId);
+    
+    Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel();
+
 
 }

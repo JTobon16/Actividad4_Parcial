@@ -5,6 +5,7 @@ import com.udec.actividad4.dominio.enums.TipoActividad;
 import com.udec.actividad4.dominio.modelo.Actividad;
 
 import java.util.List;
+import java.util.Map;
 
 public class ActividadControlador {
 
@@ -40,6 +41,28 @@ public class ActividadControlador {
                            " | Tipo: " + act.getTipoActividad() +
                            (act.getTipoActividad().name().equals("PAGA") ? " | Precio: $" + act.getPrecioPorPersona() : ""));
     }
+}
+    
+    //consulta 13
+    public void mostrarHistorialActividadesPagasPorHotel(int hotelId) {
+    List<Actividad> actividades = gestionActividad.obtenerHistorialActividadesPagasPorHotel(hotelId);
+    System.out.println("\nHistorial de actividades de pago en el hotel ID " + hotelId + ":");
+
+    for (Actividad act : actividades) {
+        System.out.println("Nombre: " + act.getNombre() +
+                           " | Dia: " + act.getDiaSemana() +
+                           " | Hora: " + act.getHora() +
+                           " | Precio por persona: $" + act.getPrecioPorPersona());
+    }
+}
+
+     //consulta 14
+    public void mostrarIngresosPorActividadesPagas() {
+    Map<Integer, Double> ingresos = gestionActividad.obtenerIngresosPorActividadesPagasPorHotel();
+    System.out.println("\nReporte de ingresos por actividades de pago por hotel:");
+
+    ingresos.forEach((hotelId, total) -> 
+        System.out.println("Hotel ID: " + hotelId + " | Ingresos totales: $" + total));
 }
 
 }

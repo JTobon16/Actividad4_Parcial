@@ -6,6 +6,7 @@ import com.udec.actividad4.dominio.excepciones.EntidadNoEncontradaException;
 import com.udec.actividad4.dominio.modelo.Actividad;
 
 import java.util.List;
+import java.util.Map;
 
 public class GestionActividadServicio implements GestionActividadCasoUso {
 
@@ -51,6 +52,15 @@ public class GestionActividadServicio implements GestionActividadCasoUso {
     public List<Actividad> obtenerActividadesContratadasPorCliente(String clienteDni) {
     return actividadRepositorio.obtenerActividadesContratadasPorCliente(clienteDni);
 }
+    
+    @Override
+    public List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId) {
+    return actividadRepositorio.obtenerHistorialActividadesPagasPorHotel(hotelId);
+}
 
-   
+
+   public Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel() {
+    return actividadRepositorio.obtenerIngresosPorActividadesPagasPorHotel();
+}
+
 }
