@@ -43,4 +43,10 @@ public class GestionHabitacionServicio implements HabitacionServicio {
       }
     
     
+    //consulta 16
+    public List<String> consultarTarifasHabitaciones() {
+    return habitacionRepositorio.obtenerTarifasPorHotelYTipo();
+}
+
+    
 }

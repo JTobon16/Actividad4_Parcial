@@ -120,4 +120,31 @@ public class HabitacionRepositorioImpl implements HabitacionRepositorio {
         habitacion.setTieneBalcón(rs.getBoolean("tieneBalcon"));
         return habitacion;
     }
+    
+    //consulta 16
+    @Override
+    public List<String> obtenerTarifasPorHotelYTipo() {
+    List<String> tarifas = new ArrayList<>();
+    String sql = """
+        SELECT hotelId, tipo, precioBasePorNoche
+        FROM habitacion
+        ORDER BY hotelId, tipo
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            int hotelId = rs.getInt("hotelId");
+            String tipo = rs.getString("tipo");
+            double precio = rs.getDouble("precioBasePorNoche");
+            tarifas.add("Hotel ID: " + hotelId + " | Tipo: " + tipo + " | Precio: $" + precio);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al consultar tarifas por hotel y tipo", e);
+    }
+
+    return tarifas;
+}
+
 }

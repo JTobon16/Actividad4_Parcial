@@ -5,6 +5,7 @@
 package com.udec.actividad4.infraestructura.controlador;
 
 import com.udec.actividad4.aplicacion.puertos.entrada.GestionHotelCasoUso;
+import com.udec.actividad4.aplicacion.servicios.GestionHabitacionServicio;
 import com.udec.actividad4.dominio.modelo.Habitacion;
 import com.udec.actividad4.dominio.modelo.Hotel;
 import java.time.LocalDate;
@@ -15,10 +16,12 @@ import java.util.Map;
 public class HotelControlador {
 
     private final GestionHotelCasoUso gestionHotelCasoUso;
+     private final GestionHabitacionServicio gestionHabitacionServicio;
 
-    public HotelControlador(GestionHotelCasoUso gestionHotelCasoUso) {
-        this.gestionHotelCasoUso = gestionHotelCasoUso;
-    }
+    public HotelControlador(GestionHotelCasoUso gestionHotelCasoUso, GestionHabitacionServicio gestionHabitacionServicio) {
+    this.gestionHotelCasoUso = gestionHotelCasoUso;
+    this.gestionHabitacionServicio = gestionHabitacionServicio;
+}
 
     // aqui hicimos el metodo que nos mostrara los hoteles consulta 1
     public void mostrarHoteles() {
@@ -88,6 +91,16 @@ public class HotelControlador {
         }
     }
 }
+
+        //consulta 16   
+        public void mostrarTarifasHabitaciones() {
+    System.out.println("\n--- Tarifas de habitaciones por hotel y tipo ---");
+    List<String> tarifas = gestionHabitacionServicio.consultarTarifasHabitaciones();
+    tarifas.forEach(System.out::println);
+}
+
+
+
 
 }
 

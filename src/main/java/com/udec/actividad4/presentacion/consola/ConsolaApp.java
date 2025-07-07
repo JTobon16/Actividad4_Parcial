@@ -4,6 +4,7 @@ import com.udec.actividad4.aplicacion.puertos.entrada.GestionSuplementoCasoUso;
 import com.udec.actividad4.aplicacion.puertos.salida.SuplementoRepositorio;
 import com.udec.actividad4.aplicacion.servicios.GestionActividadServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionEstanciaServicio;
+import com.udec.actividad4.aplicacion.servicios.GestionHabitacionServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionHotelServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionReservaServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionSuplementoServicio;
@@ -15,6 +16,7 @@ import com.udec.actividad4.infraestructura.controlador.ReservaControlador;
 import com.udec.actividad4.infraestructura.controlador.SuplementoControlador;
 import com.udec.actividad4.infraestructura.repositorio.ActividadRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.EstanciaRepositorioImpl;
+import com.udec.actividad4.infraestructura.repositorio.HabitacionRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.HotelRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.ReservaRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.SuplementoRepositorioImpl;
@@ -33,7 +35,11 @@ public class ConsolaApp {
         if (conexion != null) {
             HotelRepositorioImpl hotelRepo = new HotelRepositorioImpl(conexion);
             GestionHotelServicio hotelServicio = new GestionHotelServicio(hotelRepo);
-            HotelControlador controlador = new HotelControlador(hotelServicio);
+            
+            HabitacionRepositorioImpl habitacionRepo = new HabitacionRepositorioImpl(conexion);
+            GestionHabitacionServicio habitacionServicio = new GestionHabitacionServicio(habitacionRepo);
+            
+            HotelControlador controlador = new HotelControlador(hotelServicio, habitacionServicio);
 
             // aqui estamos generando las consultas
             controlador.mostrarHoteles();// consulta 1
@@ -80,6 +86,9 @@ public class ConsolaApp {
             actividadControlador.mostrarIngresosPorActividadesPagas(); // Consulta 14
 
 
+            controlador.mostrarTarifasHabitaciones(); // Consulta 16
+
+          
 
 
 

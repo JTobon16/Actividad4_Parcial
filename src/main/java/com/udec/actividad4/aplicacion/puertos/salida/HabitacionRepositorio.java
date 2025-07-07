@@ -20,4 +20,7 @@ public interface HabitacionRepositorio {
     void actualizar(Habitacion habitacion);
     
 void eliminar(int id);
+
+List<String> obtenerTarifasPorHotelYTipo();
+
 }

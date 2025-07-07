@@ -16,4 +16,6 @@ public interface GestionHabitacionCasoUso {
     List<Habitacion> listarDisponiblesPorTipo(int hotelId, String tipo);
 
     void eliminarHabitacion(int id);
+    
+     List<String> consultarTarifasHabitaciones(); // Para consulta 16
 }
