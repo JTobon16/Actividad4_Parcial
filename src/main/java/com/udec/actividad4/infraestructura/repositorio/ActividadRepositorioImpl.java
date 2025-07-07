@@ -298,4 +298,28 @@ public List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId) {
     return actividadesPorHotel;
 }
 
+    @Override
+    public List<Actividad> obtenerActividadesMasContratadasPorHotel() {
+    List<Actividad> actividades = new ArrayList<>();
+    String sql = """
+        SELECT a.*, COUNT(*) AS vecesContratada
+        FROM actividad a
+        JOIN detalleActividad da ON a.id = da.actividadId
+        GROUP BY a.id, a.hotelId, a.nombre, a.diaSemana, a.hora, a.descripcion, a.empleadoId, a.tipoActividad, a.precioPorPersona
+        ORDER BY a.hotelId ASC, vecesContratada DESC
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+            actividades.add(mapearActividad(rs));
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener actividades más contratadas por hotel", e);
+    }
+
+    return actividades;
+}
+
+
 }

@@ -29,6 +29,12 @@ public interface ActividadRepositorio {
     Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel();
 
     public Map<Integer, Integer> obtenerHotelesConMasActividades();
+    
+    List<Actividad> obtenerActividadesMasContratadasPorHotel();
+
+    
+    
+
 
 
 }

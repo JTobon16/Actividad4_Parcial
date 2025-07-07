@@ -78,4 +78,20 @@ public class ActividadControlador {
     }
 }
 
+    
+     // consulta 19
+    public void mostrarActividadesMasContratadasPorHotel() {
+    System.out.println("\n--- Actividades mas contratadas por los clientes en cada hotel ---");
+    List<Actividad> actividades = gestionActividad.listarActividadesMasContratadasPorHotel();
+
+    for (Actividad act : actividades) {
+        System.out.println("Hotel ID: " + act.getHotelId() +
+                           " | Actividad: " + act.getNombre() +
+                           " | Dia: " + act.getDiaSemana() +
+                           " | Hora: " + act.getHora() +
+                           " | Tipo: " + act.getTipoActividad() +
+                           " | Precio: $" + act.getPrecioPorPersona());
+    }
+}
+
 }
