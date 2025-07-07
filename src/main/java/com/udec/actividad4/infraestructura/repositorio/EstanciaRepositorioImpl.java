@@ -5,6 +5,7 @@ import com.udec.actividad4.dominio.modelo.Estancia;
 
 import java.sql.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -170,4 +171,37 @@ public class EstanciaRepositorioImpl implements EstanciaRepositorio {
         if (str == null || str.isBlank()) return new ArrayList<>();
         return Stream.of(str.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
+    
+     @Override
+    public List<Estancia> obtenerEstanciasActivasPorHotel(int hotelId) {
+    List<Estancia> estancias = new ArrayList<>();
+    String sql = """
+        SELECT e.*
+        FROM estancia e
+        JOIN reserva r ON e.reserva_id = r.id
+        WHERE r.hotelId = ? AND e.finalizada = false
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, hotelId);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Estancia estancia = new Estancia();
+            estancia.setId(rs.getInt("id"));
+            estancia.setReservaId(rs.getInt("reserva_id"));
+            estancia.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
+            estancia.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
+            estancia.setFinalizada(rs.getBoolean("finalizada"));
+            estancia.setHabitacionesOcupadas(convertirStringALista(rs.getString("habitaciones_ocupadas")));
+            estancias.add(estancia);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al consultar estancias activas por hotel: " + e.getMessage());
+    }
+
+    return estancias;
+}
+
+
 }

@@ -32,4 +32,8 @@ public interface EstanciaRepositorio {
     List<Estancia> listarPorCliente(String clienteDni);
 
     void actualizar(Estancia estancia); 
+    
+    List<Estancia> obtenerEstanciasActivasPorHotel(int hotelId);
+
 }
+    

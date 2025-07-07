@@ -17,4 +17,6 @@ public interface GestionEstanciaCasoUso {
     List<Estancia> listarEstanciasPorCliente(String clienteDni);
 
     void finalizarEstancia(int id);
+    
+    List<Estancia> listarEstanciasActivasPorHotel(int hotelId);
 }

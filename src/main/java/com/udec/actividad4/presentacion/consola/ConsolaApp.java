@@ -2,13 +2,16 @@ package com.udec.actividad4.presentacion.consola;
 
 import com.udec.actividad4.aplicacion.puertos.entrada.GestionSuplementoCasoUso;
 import com.udec.actividad4.aplicacion.puertos.salida.SuplementoRepositorio;
+import com.udec.actividad4.aplicacion.servicios.GestionEstanciaServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionHotelServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionReservaServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionSuplementoServicio;
 import com.udec.actividad4.infraestructura.config.ConexionBD;
+import com.udec.actividad4.infraestructura.controlador.EstanciaControlador;
 import com.udec.actividad4.infraestructura.controlador.HotelControlador;
 import com.udec.actividad4.infraestructura.controlador.ReservaControlador;
 import com.udec.actividad4.infraestructura.controlador.SuplementoControlador;
+import com.udec.actividad4.infraestructura.repositorio.EstanciaRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.HotelRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.ReservaRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.SuplementoRepositorioImpl;
@@ -50,9 +53,19 @@ public class ConsolaApp {
             GestionSuplementoCasoUso gestionSuplemento = new GestionSuplementoServicio(suplementoRepositorio);
             SuplementoControlador suplementoControlador = new SuplementoControlador(gestionSuplemento);
 
-            // Ejecutar la consulta 9
-            suplementoControlador.mostrarSuplementosTemporada(LocalDate.of(2025, 7, 1));
-
+            
+            suplementoControlador.mostrarSuplementosTemporada(LocalDate.of(2025, 6, 01));//consulta 9
+            
+            
+            
+            EstanciaRepositorioImpl estanciaRepo = new EstanciaRepositorioImpl(conexion);
+            GestionEstanciaServicio gestionEstanciaServicio = new GestionEstanciaServicio(estanciaRepo);
+            EstanciaControlador estanciaControlador = new EstanciaControlador(gestionEstanciaServicio);
+            
+            int hotelId = 5;
+            estanciaControlador.mostrarEstanciasActivasPorHotel(hotelId);// consulta 10
+            
+            
 
         } else {
             System.err.println("No se pudo establecer la conexión a la base de datos.");
