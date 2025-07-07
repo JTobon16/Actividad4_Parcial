@@ -5,6 +5,7 @@ import com.udec.actividad4.dominio.modelo.Suplemento;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class SuplementoControlador {
 
@@ -38,5 +39,23 @@ public class SuplementoControlador {
                            " | Valor/noche: $" + s.getValorPorNoche());
     }
 }
+    
+    
+    public void mostrarSuplementosTemporadaPorHotel() {
+    Map<Integer, List<String>> reporte = gestionSuplementoCasoUso.obtenerSuplementosTemporadaPorHotel();
+    System.out.println("\n--- Suplementos de temporada por hotel ---");
+
+    if (reporte.isEmpty()) {
+        System.out.println("No se encontraron suplementos de temporada.");
+    } else {
+        for (Map.Entry<Integer, List<String>> entry : reporte.entrySet()) {
+            System.out.println("Hotel ID: " + entry.getKey());
+            for (String suplemento : entry.getValue()) {
+                System.out.println("  - " + suplemento);
+            }
+        }
+    }
+}
+
 
 }

@@ -7,6 +7,7 @@ import com.udec.actividad4.dominio.modelo.Suplemento;
 import java.time.LocalDate;
 
 import java.util.List;
+import java.util.Map;
 
 public class GestionSuplementoServicio implements GestionSuplementoCasoUso {
 
@@ -59,9 +60,16 @@ public class GestionSuplementoServicio implements GestionSuplementoCasoUso {
     return suplementoRepositorio.obtenerSuplementosTemporadaPorFecha(fecha); 
 }
     //consulta 15
+    @Override
     public List<Suplemento> listarSuplementosPorCaracteristicas() {
     return suplementoRepositorio.obtenerSuplementosPorCaracteristicas();
 }
+    // consulta 17
+    @Override
+    public Map<Integer, List<String>> obtenerSuplementosTemporadaPorHotel() {
+    return suplementoRepositorio.obtenerSuplementosTemporadaPorHotel();
+}
+
 
 
 }

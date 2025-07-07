@@ -8,6 +8,7 @@ import com.udec.actividad4.dominio.modelo.Suplemento;
 import java.time.LocalDate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface SuplementoRepositorio {
@@ -27,6 +28,8 @@ public interface SuplementoRepositorio {
     List<Suplemento> obtenerSuplementosTemporadaPorFecha(LocalDate fechaConsulta);// consulta 9
     
     List<Suplemento> obtenerSuplementosPorCaracteristicas();// consulta 15
+    
+    Map<Integer, List<String>> obtenerSuplementosTemporadaPorHotel();
 
 
 }

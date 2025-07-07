@@ -7,7 +7,9 @@ import com.udec.actividad4.dominio.modelo.Suplemento;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class SuplementoRepositorioImpl implements SuplementoRepositorio {
@@ -211,6 +213,37 @@ public class SuplementoRepositorioImpl implements SuplementoRepositorio {
     }
 
     return suplementos;
+}
+
+    // consuilta 17
+    @Override
+public Map<Integer, List<String>> obtenerSuplementosTemporadaPorHotel() {
+    Map<Integer, List<String>> suplementosPorHotel = new HashMap<>();
+
+    String sql = """
+        SELECT hotelId, descripcion
+        FROM suplemento
+        WHERE tipo = 'TEMPORADA'
+        ORDER BY hotelId
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            int hotelId = rs.getInt("hotelId");
+            String descripcion = rs.getString("descripcion");
+
+            suplementosPorHotel
+                .computeIfAbsent(hotelId, k -> new ArrayList<>())
+                .add(descripcion);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener suplementos de temporada por hotel", e);
+    }
+
+    return suplementosPorHotel;
 }
 
 
