@@ -62,6 +62,7 @@ public class ConsolaApp {
             reservaControlador.mostrarReservasActivasConHabitaciones();//consulta 7
             reservaControlador.mostrarHistorialReservasCliente("CC1001001"); // consulta 8
             reservaControlador.mostrarReservasConCliente(); // Consulta 20
+            reservaControlador.mostrarClientesConReservasPagasYEstanciasPendientes(); // Consulta 23
 
             
 

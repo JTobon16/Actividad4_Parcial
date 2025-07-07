@@ -228,7 +228,39 @@ public class ReservaRepositorioImpl implements ReservaRepositorio {
 
     return resultados;
 }
+// consulta 23
+    @Override
+    public List<String> obtenerClientesConReservasPagasYEstanciasPendientes() {
+    List<String> resultado = new ArrayList<>();
 
+    String sql = """
+        SELECT c.dni, c.nombreCompleto, r.id AS reserva_id, r.senalPagada, e.fecha_inicio
+        FROM cliente c
+        JOIN reserva r ON c.dni = r.clienteDni
+        JOIN estancia e ON r.id = e.reserva_id
+        WHERE r.senalPagada > 0
+          AND e.fecha_inicio > CURDATE()
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String linea = String.format("Cliente: %s - %s | Reserva ID: %d | Pago: %.2f | Fecha de Inicio: %s",
+                    rs.getString("dni"),
+                    rs.getString("nombreCompleto"),
+                    rs.getInt("reserva_id"),
+                    rs.getDouble("senalPagada"),
+                    rs.getDate("fecha_inicio").toLocalDate());
+            resultado.add(linea);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener clientes con reservas pagadas y estancias pendientes", e);
+    }
+
+    return resultado;
+}
 
 
 }

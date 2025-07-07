@@ -69,4 +69,11 @@ public class ReservaControlador {
     }
 }
 
+    
+    public void mostrarClientesConReservasPagasYEstanciasPendientes() {
+    List<String> datos = gestionReservaCasoUso.obtenerClientesConReservasPagasYEstanciasPendientes();
+    System.out.println("\nClientes con reservas pagadas y estancias aun no iniciadas:");
+    datos.forEach(System.out::println);
+}
+
 }

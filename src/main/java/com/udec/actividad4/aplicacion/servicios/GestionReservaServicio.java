@@ -61,4 +61,9 @@ public class GestionReservaServicio implements GestionReservaCasoUso{
     return reservaRepositorio.obtenerReservasConDetalleCliente();
 }
 
+    @Override
+    public List<String> obtenerClientesConReservasPagasYEstanciasPendientes() {
+    return reservaRepositorio.obtenerClientesConReservasPagasYEstanciasPendientes();
+}
+
 }

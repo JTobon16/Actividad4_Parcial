@@ -32,5 +32,7 @@ public interface ReservaRepositorio {
 
     public List<String> obtenerReservasConDetalleCliente();
 
+    List<String> obtenerClientesConReservasPagasYEstanciasPendientes();
+
 
 }
