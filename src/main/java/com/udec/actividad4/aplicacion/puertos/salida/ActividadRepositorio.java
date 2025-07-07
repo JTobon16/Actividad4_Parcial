@@ -32,6 +32,8 @@ public interface ActividadRepositorio {
     
     List<Actividad> obtenerActividadesMasContratadasPorHotel();
 
+    public List<String> listarServiciosAdicionalesPorEstanciaCliente();
+
     
     
 

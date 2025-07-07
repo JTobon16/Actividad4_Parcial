@@ -76,4 +76,8 @@ public class GestionActividadServicio implements GestionActividadCasoUso {
 }
 
 
+    public List<String> listarServiciosAdicionalesPorEstanciaCliente() {
+    return actividadRepositorio.listarServiciosAdicionalesPorEstanciaCliente();
+}
+
 }

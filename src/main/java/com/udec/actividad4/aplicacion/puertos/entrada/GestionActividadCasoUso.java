@@ -26,6 +26,8 @@ public interface GestionActividadCasoUso {
     Map<Integer, Integer> obtenerHotelesConMasActividades();
 
     List<Actividad> listarActividadesMasContratadasPorHotel();
+
+    public List<String> listarServiciosAdicionalesPorEstanciaCliente();
     
 
 

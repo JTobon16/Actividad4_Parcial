@@ -320,6 +320,41 @@ public List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId) {
 
     return actividades;
 }
+    //consulta 25
+    public List<String> listarServiciosAdicionalesPorEstanciaCliente() {
+    List<String> servicios = new ArrayList<>();
+    String sql = """
+        SELECT c.dni, c.nombreCompleto, a.nombre AS actividad, a.descripcion, da.cantidadPersonas, e.fecha_inicio, e.fecha_fin
+        FROM cliente c
+        JOIN reserva r ON c.dni = r.clienteDni
+        JOIN estancia e ON r.id = e.reserva_id
+        JOIN detalleActividad da ON e.id = da.estanciaId
+        JOIN actividad a ON da.actividadId = a.id
+        ORDER BY c.dni, e.fecha_inicio
+    """;
 
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String detalle = String.format(
+                "Cliente: %s - %s | Actividad: %s (%s) | Personas: %d | Estancia: %s a %s",
+                rs.getString("dni"),
+                rs.getString("nombreCompleto"),
+                rs.getString("actividad"),
+                rs.getString("descripcion"),
+                rs.getInt("cantidadPersonas"),
+                rs.getDate("fecha_inicio").toLocalDate(),
+                rs.getDate("fecha_fin").toLocalDate()
+            );
+            servicios.add(detalle);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al listar servicios adicionales contratados", e);
+    }
+
+    return servicios;
+}
 
 }

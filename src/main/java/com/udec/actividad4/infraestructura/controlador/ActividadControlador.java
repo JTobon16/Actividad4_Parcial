@@ -94,4 +94,12 @@ public class ActividadControlador {
     }
 }
 
+    
+    
+    public void mostrarServiciosAdicionalesPorEstanciaCliente() {
+    List<String> servicios = gestionActividad.listarServiciosAdicionalesPorEstanciaCliente();
+    System.out.println("\nServicios adicionales contratados durante las estancias:");
+    servicios.forEach(System.out::println);
+}
+
 }

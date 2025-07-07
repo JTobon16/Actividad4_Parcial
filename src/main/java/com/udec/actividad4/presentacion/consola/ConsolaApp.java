@@ -98,6 +98,8 @@ public class ConsolaApp {
             actividadControlador.mostrarIngresosPorActividadesPagas(); // Consulta 14
             actividadControlador.mostrarHotelesConMasActividades(); // Consulta 19
             actividadControlador.mostrarActividadesMasContratadasPorHotel(); // Consulta 21
+            actividadControlador.mostrarServiciosAdicionalesPorEstanciaCliente(); // Consulta 25
+
 
 
 
