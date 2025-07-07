@@ -22,6 +22,8 @@ public interface GestionActividadCasoUso {
     List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId);
     
     Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel();
+    
+    Map<Integer, Integer> obtenerHotelesConMasActividades();
 
 
 

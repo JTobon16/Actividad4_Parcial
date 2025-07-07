@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -267,6 +268,34 @@ public List<Actividad> obtenerHistorialActividadesPagasPorHotel(int hotelId) {
     }
 
     return ingresosPorHotel;
+}
+
+    
+    @Override
+    public Map<Integer, Integer> obtenerHotelesConMasActividades() {
+    Map<Integer, Integer> actividadesPorHotel = new LinkedHashMap<>();
+
+    String sql = """
+        SELECT hotelId, COUNT(*) AS cantidad
+        FROM actividad
+        GROUP BY hotelId
+        ORDER BY cantidad DESC
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            int hotelId = rs.getInt("hotelId");
+            int cantidad = rs.getInt("cantidad");
+            actividadesPorHotel.put(hotelId, cantidad);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener hoteles con más actividades", e);
+    }
+
+    return actividadesPorHotel;
 }
 
 }

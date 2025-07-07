@@ -59,8 +59,16 @@ public class GestionActividadServicio implements GestionActividadCasoUso {
 }
 
 
+    @Override
    public Map<Integer, Double> obtenerIngresosPorActividadesPagasPorHotel() {
     return actividadRepositorio.obtenerIngresosPorActividadesPagasPorHotel();
 }
+   
+   // consulta 19
+   @Override
+    public Map<Integer, Integer> obtenerHotelesConMasActividades() {
+    return actividadRepositorio.obtenerHotelesConMasActividades();
+}
+
 
 }

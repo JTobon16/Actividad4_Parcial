@@ -65,4 +65,17 @@ public class ActividadControlador {
         System.out.println("Hotel ID: " + hotelId + " | Ingresos totales: $" + total));
 }
 
+    // consulta19
+    public void mostrarHotelesConMasActividades() {
+    Map<Integer, Integer> datos = gestionActividad.obtenerHotelesConMasActividades();
+
+    System.out.println("\nHoteles con mayor numero de actividades de entretenimiento:");
+    if (datos.isEmpty()) {
+        System.out.println("No hay actividades registradas.");
+    } else {
+        datos.forEach((hotelId, cantidad) -> 
+            System.out.println("Hotel ID: " + hotelId + " - Actividades: " + cantidad));
+    }
+}
+
 }
