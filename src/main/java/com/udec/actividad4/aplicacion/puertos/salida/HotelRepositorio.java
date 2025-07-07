@@ -36,6 +36,10 @@ public interface HotelRepositorio {
     Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId); // consulta 5
     
     List<Habitacion> obtenerHabitacionesOcupadasEnPeriodo(int hotelId, LocalDate inicio, LocalDate fin);  // consulta 6
+    
+  
+
+    public List<String> obtenerDirectoresDeHoteles();// consulta 17
 
 
 

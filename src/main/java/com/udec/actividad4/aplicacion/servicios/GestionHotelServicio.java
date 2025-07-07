@@ -63,12 +63,20 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     return hotelRepositorio.obtenerResumenEmpleados();
 }
     //consulta 5
+    @Override
     public Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId) {
     return hotelRepositorio.contarHabitacionesDisponiblesPorTipo(hotelId);
 }
     //consulta 6
+    @Override
     public List<Habitacion> obtenerHabitacionesOcupadasEnPeriodo(int hotelId, LocalDate inicio, LocalDate fin) {
     return hotelRepositorio.obtenerHabitacionesOcupadasEnPeriodo(hotelId, inicio, fin);
 }
+    
+    @Override
+    public List<String> listarDirectoresDeHoteles() {
+    return hotelRepositorio.obtenerDirectoresDeHoteles();
+}
+
 
 }

@@ -99,6 +99,18 @@ public class HotelControlador {
     tarifas.forEach(System.out::println);
 }
 
+        
+        //consulta 17
+    public void mostrarDirectoresDeHoteles() {
+    List<String> directores = gestionHotelCasoUso.listarDirectoresDeHoteles();
+    System.out.println("\n--- Directores de Hoteles ---");
+
+    if (directores.isEmpty()) {
+        System.out.println("No se encontraron directores de hoteles.");
+    } else {
+        directores.forEach(System.out::println);
+    }
+}
 
 
 

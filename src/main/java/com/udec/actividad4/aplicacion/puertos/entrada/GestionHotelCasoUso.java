@@ -19,6 +19,9 @@ public interface GestionHotelCasoUso {
     List<String> obtenerResumenEmpleados();// Consulta 4
     Map<String, Integer> contarHabitacionesDisponiblesPorTipo(int hotelId); // consulta 5
     List<Habitacion> obtenerHabitacionesOcupadasEnPeriodo(int hotelId, LocalDate inicio, LocalDate fin); // consulta 6
+    List<String> listarDirectoresDeHoteles();// consulta 17
+    
+
 
 
 

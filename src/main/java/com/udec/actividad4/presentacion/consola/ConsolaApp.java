@@ -48,6 +48,8 @@ public class ConsolaApp {
             controlador.mostrarResumenEmpleados();// consulta 4
             controlador.mostrarHabitacionesDisponiblesPorTipo(1); // consulta 5  
             controlador.mostrarOcupacionPorPeriodo(1, LocalDate.of(2025, 7, 1), LocalDate.of(2025, 7, 10)); // consulta 6
+            controlador.mostrarDirectoresDeHoteles(); // Consulta 18
+
             
             
             ReservaRepositorioImpl reservaRepo = new ReservaRepositorioImpl(conexion);

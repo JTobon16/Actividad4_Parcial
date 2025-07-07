@@ -295,5 +295,30 @@ public class HotelRepositorioImpl implements HotelRepositorio {
     return ocupadas;
 }
 
-    
+    // consulta 17
+    @Override
+    public List<String> obtenerDirectoresDeHoteles() {
+    List<String> directores = new ArrayList<>();
+    String sql = """
+        SELECT id, nombre, nombreDirector
+        FROM hotel
+        WHERE nombreDirector IS NOT NULL AND nombreDirector <> ''
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String linea = "Hotel: " + rs.getString("nombre") +
+                           " (ID: " + rs.getInt("id") + ") - Director: " + rs.getString("nombreDirector");
+            directores.add(linea);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener los directores de hoteles", e);
+    }
+
+    return directores;
+}
+
 }
