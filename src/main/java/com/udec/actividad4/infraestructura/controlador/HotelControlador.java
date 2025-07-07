@@ -111,7 +111,12 @@ public class HotelControlador {
         directores.forEach(System.out::println);
     }
 }
-
+    //consulta 22
+    public void mostrarHotelesMayorOcupacion6Meses() {
+    System.out.println("\n--- Hoteles con mayor ocupacion en los ultimos 6 meses ---");
+    List<String> hoteles = gestionHotelCasoUso.obtenerHotelesConMayorOcupacionEn6Meses();
+    hoteles.forEach(System.out::println);
+}
 
 
 }

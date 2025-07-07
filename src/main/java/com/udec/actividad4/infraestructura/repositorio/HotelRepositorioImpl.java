@@ -321,4 +321,37 @@ public class HotelRepositorioImpl implements HotelRepositorio {
     return directores;
 }
 
+    //consulta 22 
+   @Override
+    public List<String> listarHotelesConMayorOcupacionEn6Meses() {
+    List<String> resultado = new ArrayList<>();
+    String sql = """
+        SELECT h.nombre AS nombreHotel, COUNT(*) AS totalOcupacion
+        FROM estancia e
+        JOIN reserva r ON e.reserva_id = r.id
+        JOIN detallereservahabitacion drh ON r.id = drh.reservaId
+        JOIN habitacion hab ON drh.habitacionId = hab.id
+        JOIN hotel h ON hab.hotelId = h.id
+        WHERE e.fecha_inicio >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+        GROUP BY h.nombre
+        ORDER BY totalOcupacion DESC
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String hotel = rs.getString("nombreHotel");
+            int ocupacion = rs.getInt("totalOcupacion");
+            resultado.add("Hotel: " + hotel + " | Ocupaciones en 6 meses: " + ocupacion);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener hoteles con mayor ocupación", e);
+    }
+
+    return resultado;
+}
+
+
+
 }

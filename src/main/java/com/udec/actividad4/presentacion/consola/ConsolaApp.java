@@ -49,6 +49,8 @@ public class ConsolaApp {
             controlador.mostrarHabitacionesDisponiblesPorTipo(1); // consulta 5  
             controlador.mostrarOcupacionPorPeriodo(1, LocalDate.of(2025, 7, 1), LocalDate.of(2025, 7, 10)); // consulta 6
             controlador.mostrarDirectoresDeHoteles(); // Consulta 18
+            controlador.mostrarHotelesMayorOcupacion6Meses(); // Consulta 22
+
 
             
             

@@ -40,6 +40,9 @@ public interface HotelRepositorio {
   
 
     public List<String> obtenerDirectoresDeHoteles();// consulta 17
+    
+    public List<String> listarHotelesConMayorOcupacionEn6Meses();// consulta 22
+
 
 
 

@@ -77,6 +77,12 @@ public class GestionHotelServicio implements GestionHotelCasoUso {
     public List<String> listarDirectoresDeHoteles() {
     return hotelRepositorio.obtenerDirectoresDeHoteles();
 }
+    
+    @Override
+    public List<String> obtenerHotelesConMayorOcupacionEn6Meses() {
+    return hotelRepositorio.listarHotelesConMayorOcupacionEn6Meses();
+}
+
 
 
 }
