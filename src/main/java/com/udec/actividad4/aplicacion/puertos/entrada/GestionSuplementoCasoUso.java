@@ -21,4 +21,6 @@ public interface GestionSuplementoCasoUso {
    
     void actualizarSuplemento(Suplemento suplemento);
 
+    List<Suplemento> listarSuplementosPorCaracteristicas(); //consulta 15
+
 }

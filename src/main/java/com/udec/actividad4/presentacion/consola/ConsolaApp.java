@@ -58,6 +58,8 @@ public class ConsolaApp {
 
             
             suplementoControlador.mostrarSuplementosTemporada(LocalDate.of(2025, 6, 01));//consulta 9
+            suplementoControlador.mostrarSuplementosPorCaracteristicas(); // Consulta 15
+
             
             
             

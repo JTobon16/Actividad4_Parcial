@@ -25,5 +25,8 @@ public interface SuplementoRepositorio {
     void actualizar (Suplemento suplemento);
     
     List<Suplemento> obtenerSuplementosTemporadaPorFecha(LocalDate fechaConsulta);// consulta 9
+    
+    List<Suplemento> obtenerSuplementosPorCaracteristicas();// consulta 15
+
 
 }

@@ -58,6 +58,11 @@ public class GestionSuplementoServicio implements GestionSuplementoCasoUso {
     public List<Suplemento> obtenerSuplementosTemporadaPorFecha(LocalDate fecha) {
     return suplementoRepositorio.obtenerSuplementosTemporadaPorFecha(fecha); 
 }
+    //consulta 15
+    public List<Suplemento> listarSuplementosPorCaracteristicas() {
+    return suplementoRepositorio.obtenerSuplementosPorCaracteristicas();
+}
+
 
 }
 

@@ -26,4 +26,17 @@ public class SuplementoControlador {
             }
         }
     }
+    
+    // consulta 15
+    public void mostrarSuplementosPorCaracteristicas() {
+    List<Suplemento> suplementos = gestionSuplementoCasoUso.listarSuplementosPorCaracteristicas();
+    System.out.println("\n--- Suplementos aplicados por caracteristicas especiales ---");
+
+    for (Suplemento s : suplementos) {
+        System.out.println("Hotel ID: " + s.getHotelId() +
+                           " | Descripcion: " + s.getDescripcion() +
+                           " | Valor/noche: $" + s.getValorPorNoche());
+    }
+}
+
 }
