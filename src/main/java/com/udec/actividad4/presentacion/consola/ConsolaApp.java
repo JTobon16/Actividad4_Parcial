@@ -50,6 +50,8 @@ public class ConsolaApp {
             controlador.mostrarOcupacionPorPeriodo(1, LocalDate.of(2025, 7, 1), LocalDate.of(2025, 7, 10)); // consulta 6
             controlador.mostrarDirectoresDeHoteles(); // Consulta 18
             controlador.mostrarHotelesMayorOcupacion6Meses(); // Consulta 22
+            controlador.mostrarPreciosHabitacionesConSuplementos(); // Consulta 24
+
 
 
             

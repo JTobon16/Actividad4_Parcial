@@ -118,6 +118,13 @@ public class HotelControlador {
     hoteles.forEach(System.out::println);
 }
 
+    //consulta 23
+    public void mostrarPreciosHabitacionesConSuplementos() {
+    List<String> resultados = gestionHabitacionServicio.obtenerPreciosHabitacionesConSuplementos();
+    System.out.println("\nPrecios de habitaciones con suplementos por caracteristicas:");
+    resultados.forEach(System.out::println);
+}
+
 
 }
 

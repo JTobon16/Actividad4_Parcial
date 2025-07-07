@@ -18,4 +18,7 @@ public interface GestionHabitacionCasoUso {
     void eliminarHabitacion(int id);
     
      List<String> consultarTarifasHabitaciones(); // Para consulta 16
+     
+     List<String> obtenerPreciosHabitacionesConSuplementos();
+
 }

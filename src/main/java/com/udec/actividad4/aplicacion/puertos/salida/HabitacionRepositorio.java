@@ -23,4 +23,7 @@ void eliminar(int id);
 
 List<String> obtenerTarifasPorHotelYTipo();
 
+List<String> obtenerPreciosHabitacionesConSuplementos();
+
+
 }

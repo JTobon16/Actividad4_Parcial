@@ -285,7 +285,7 @@ public class HotelRepositorioImpl implements HotelRepositorio {
             h.setPrecioBasePorNoche(rs.getDouble("precioBasePorNoche"));
             h.setTieneVistaMar(rs.getBoolean("tieneVistaMar"));
             h.setTieneJacuzzi(rs.getBoolean("tieneJacuzzi"));
-            h.setTieneBalcón(rs.getBoolean("tieneBalcon"));
+            h.setTieneBalcon(rs.getBoolean("tieneBalcon"));
             ocupadas.add(h);
         }
     } catch (SQLException e) {

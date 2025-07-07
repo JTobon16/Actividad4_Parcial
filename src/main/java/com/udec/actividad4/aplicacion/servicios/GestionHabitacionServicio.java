@@ -48,5 +48,10 @@ public class GestionHabitacionServicio implements HabitacionServicio {
     return habitacionRepositorio.obtenerTarifasPorHotelYTipo();
 }
 
+    //consulta 23
+    public List<String> obtenerPreciosHabitacionesConSuplementos() {
+    return habitacionRepositorio.obtenerPreciosHabitacionesConSuplementos();
+}
+
     
 }

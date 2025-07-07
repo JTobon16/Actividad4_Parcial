@@ -12,20 +12,20 @@ public class Habitacion {
     private double precioBasePorNoche;
     private boolean tieneVistaMar;
     private boolean tieneJacuzzi;
-    private boolean tieneBalcón;
+    private boolean tieneBalcon;
 
     public Habitacion() {
     }
 
     public Habitacion(int id, int hotelId, TipoHabitacion tipo, double precioBasePorNoche,
-                      boolean tieneVistaMar, boolean tieneJacuzzi, boolean tieneBalcón) {
+                      boolean tieneVistaMar, boolean tieneJacuzzi, boolean tieneBalcon) {
         this.id = id;
         this.hotelId = hotelId;
         this.tipo = tipo;
         this.precioBasePorNoche = precioBasePorNoche;
         this.tieneVistaMar = tieneVistaMar;
         this.tieneJacuzzi = tieneJacuzzi;
-        this.tieneBalcón = tieneBalcón;
+        this.tieneBalcon = tieneBalcon;
     }
 
     // Getters y Setters
@@ -78,12 +78,12 @@ public class Habitacion {
         this.tieneJacuzzi = tieneJacuzzi;
     }
 
-    public boolean isTieneBalcón() {
-        return tieneBalcón;
+    public boolean isTieneBalcon() {
+        return tieneBalcon;
     }
 
-    public void setTieneBalcón(boolean tieneBalcón) {
-        this.tieneBalcón = tieneBalcón;
+    public void setTieneBalcon(boolean tieneBalcon) {
+        this.tieneBalcon = tieneBalcon;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class Habitacion {
                 ", precioBasePorNoche=" + precioBasePorNoche +
                 ", tieneVistaMar=" + tieneVistaMar +
                 ", tieneJacuzzi=" + tieneJacuzzi +
-                ", tieneBalcón=" + tieneBalcón +
+                ", tieneBalcon=" + tieneBalcon +
                 '}';
     }
 
