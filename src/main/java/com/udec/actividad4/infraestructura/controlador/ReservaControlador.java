@@ -58,4 +58,15 @@ public class ReservaControlador {
     }
 }
 
+    public void mostrarReservasConCliente() {
+    List<String> reservas = gestionReservaCasoUso.obtenerReservasConDetalleCliente();
+    
+    System.out.println("\n--- Reservas con detalle del cliente ---");
+    if (reservas.isEmpty()) {
+        System.out.println("No hay reservas registradas.");
+    } else {
+        reservas.forEach(System.out::println);
+    }
+}
+
 }

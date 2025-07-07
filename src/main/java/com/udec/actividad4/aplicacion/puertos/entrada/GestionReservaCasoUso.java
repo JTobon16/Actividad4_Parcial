@@ -22,6 +22,9 @@ public interface GestionReservaCasoUso {
     public List<ReservaDetalleDTO> obtenerReservasActivasConDetalle();// consulta 7
     
     List<Reserva> obtenerHistorialReservasCliente(String dniCliente); // consulta 8
+    
+    List<String> obtenerReservasConDetalleCliente();
+
 
 
 }

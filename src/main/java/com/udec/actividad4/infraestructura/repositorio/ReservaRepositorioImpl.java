@@ -134,6 +134,7 @@ public class ReservaRepositorioImpl implements ReservaRepositorio {
     }
     
     // consulta 7
+    @Override
     public List<ReservaDetalleDTO> obtenerReservasActivasConDetalle() {
     List<ReservaDetalleDTO> resultados = new ArrayList<>();
     String sql = """
@@ -192,5 +193,42 @@ public class ReservaRepositorioImpl implements ReservaRepositorio {
 
         return reservas;
     }
+    
+   @Override
+    public List<String> obtenerReservasConDetalleCliente() {
+    List<String> resultados = new ArrayList<>();
+
+    String sql = """
+        SELECT r.id AS idReserva, r.fechaInicio, r.fechaFin,
+               c.nombreCompleto, c.dni, c.telefono
+        FROM reserva r
+        JOIN cliente c ON r.clienteDni = c.dni
+        ORDER BY r.fechaInicio
+    """;
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String linea = String.format(
+                "Reserva ID: %d | Inicio: %s | Fin: %s | Cliente: %s (%s) - Tel: %s",
+                rs.getInt("idReserva"),
+                rs.getDate("fechaInicio"),
+                rs.getDate("fechaFin"),
+                rs.getString("nombreCompleto"),
+                rs.getString("dni"),
+                rs.getString("telefono")
+            );
+            resultados.add(linea);
+        }
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener reservas con detalle de cliente", e);
+    }
+
+    return resultados;
+}
+
+
 
 }

@@ -30,5 +30,7 @@ public interface ReservaRepositorio {
     
     List<Reserva> obtenerHistorialReservasCliente(String dniCliente);// consulta 8
 
+    public List<String> obtenerReservasConDetalleCliente();
+
 
 }

@@ -56,4 +56,9 @@ public class GestionReservaServicio implements GestionReservaCasoUso{
     return reservaRepositorio.obtenerHistorialReservasCliente(dniCliente);
 }
 
+    @Override
+    public List<String> obtenerReservasConDetalleCliente() {
+    return reservaRepositorio.obtenerReservasConDetalleCliente();
+}
+
 }
