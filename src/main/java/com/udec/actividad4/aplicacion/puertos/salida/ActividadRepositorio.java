@@ -16,4 +16,8 @@ public interface ActividadRepositorio {
     void actualizar(Actividad actividad);
 
     void eliminar(int id);
+    
+    List<Actividad> obtenerActividadesPorEmpleado(int empleadoId);
+
+     List<Actividad> obtenerActividadesPorHotel(int hotelId);
 }

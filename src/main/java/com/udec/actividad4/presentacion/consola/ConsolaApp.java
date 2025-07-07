@@ -2,15 +2,18 @@ package com.udec.actividad4.presentacion.consola;
 
 import com.udec.actividad4.aplicacion.puertos.entrada.GestionSuplementoCasoUso;
 import com.udec.actividad4.aplicacion.puertos.salida.SuplementoRepositorio;
+import com.udec.actividad4.aplicacion.servicios.GestionActividadServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionEstanciaServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionHotelServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionReservaServicio;
 import com.udec.actividad4.aplicacion.servicios.GestionSuplementoServicio;
 import com.udec.actividad4.infraestructura.config.ConexionBD;
+import com.udec.actividad4.infraestructura.controlador.ActividadControlador;
 import com.udec.actividad4.infraestructura.controlador.EstanciaControlador;
 import com.udec.actividad4.infraestructura.controlador.HotelControlador;
 import com.udec.actividad4.infraestructura.controlador.ReservaControlador;
 import com.udec.actividad4.infraestructura.controlador.SuplementoControlador;
+import com.udec.actividad4.infraestructura.repositorio.ActividadRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.EstanciaRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.HotelRepositorioImpl;
 import com.udec.actividad4.infraestructura.repositorio.ReservaRepositorioImpl;
@@ -65,7 +68,12 @@ public class ConsolaApp {
             int hotelId = 5;
             estanciaControlador.mostrarEstanciasActivasPorHotel(hotelId);// consulta 10
             
+            ActividadRepositorioImpl actividadRepo = new ActividadRepositorioImpl(conexion);
+            GestionActividadServicio actividadServicio = new GestionActividadServicio(actividadRepo);
+            ActividadControlador actividadControlador = new ActividadControlador(actividadServicio);
             
+            actividadControlador.mostrarActividadesPorHotel(1); // Consulta 11
+
 
         } else {
             System.err.println("No se pudo establecer la conexión a la base de datos.");

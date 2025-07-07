@@ -15,4 +15,6 @@ public interface GestionActividadCasoUso {
     List<Actividad> listarActividadesPorEmpleado(int empleadoId);
 
     void eliminarActividad(int id);
+    
+    
 }

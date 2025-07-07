@@ -124,4 +124,65 @@ public class ActividadRepositorioImpl implements ActividadRepositorio {
         actividad.setPrecioPorPersona(rs.getDouble("precioPorPersona"));
         return actividad;
     }
+    
+    @Override
+    public List<Actividad> obtenerActividadesPorHotel(int hotelId) {
+        List<Actividad> actividades = new ArrayList<>();
+        String sql = "SELECT * FROM actividad WHERE hotelId = ?";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, hotelId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Actividad actividad = new Actividad(
+                    rs.getInt("id"),
+                    rs.getInt("hotelId"),
+                    rs.getString("nombre"),
+                    DayOfWeek.valueOf(rs.getString("diaSemana").toUpperCase()),
+                    rs.getTime("hora").toLocalTime(),
+                    rs.getString("descripcion"),
+                    rs.getInt("empleadoId"),
+                    TipoActividad.valueOf(rs.getString("tipoActividad")),
+                    rs.getDouble("precioPorPersona")
+                );
+                actividades.add(actividad);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener actividades por hotel", e);
+        }
+
+        return actividades;
+    }
+    
+    @Override
+public List<Actividad> obtenerActividadesPorEmpleado(int empleadoId) {
+    List<Actividad> actividades = new ArrayList<>();
+    String sql = "SELECT * FROM actividad WHERE empleadoId = ?";
+
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, empleadoId);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Actividad actividad = new Actividad(
+                rs.getInt("id"),
+                rs.getInt("hotelId"),
+                rs.getString("nombre"),
+                DayOfWeek.valueOf(rs.getString("diaSemana").toUpperCase()),
+                rs.getTime("hora").toLocalTime(),
+                rs.getString("descripcion"),
+                rs.getInt("empleadoId"),
+                TipoActividad.valueOf(rs.getString("tipoActividad").toUpperCase()),
+                rs.getDouble("precioPorPersona")
+            );
+            actividades.add(actividad);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener actividades por empleado", e);
+    }
+
+    return actividades;
+}
+
 }
